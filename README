@@ -1,0 +1,98 @@
+# バンドへのイベントお誘いメール生成プログラム
+
+このプログラムは、指定されたバンド名のリストとメールテンプレートを使用して、各バンドへのイベントお誘いメールを自動生成します。
+
+## ファイル構造
+
+プログラムを実行する前に、以下のようなディレクトリ構造を準備してください。
+
+project/
+│
+├── main.go
+├── band_list/
+│ └── band_names.csv
+├── event_invitation_templates/
+│ └── event_mail_format.txt
+└── send_mail_template/
+
+
+## 必要なファイル
+
+### `band_list/band_names.csv`
+
+バンド名を含むCSVファイルです。ファイルの内容は以下のようになります。
+
+例
+```csv
+Velvet Nocturne
+Crimson Eclipse
+Lunar Serenade
+Phantom Requiem
+Abyssal Symphony
+```
+
+`event_invitation_templates/event_mail_format.txt`
+メールテンプレートファイルです。バンド名が挿入される部分は %%BAND_NAME%% というプレースホルダーで指定します。
+
+
+メール例文
+```txt
+%%BAND_NAME%%ご担当者様
+
+お世話になっております。
+
+John Doeと申します。
+
+この度、Contoso Corporationでイベントを行うことになりまして
+%%BAND_NAME%%様にイベントのご出演のお誘いでご連絡させていただきました。
+
+下記、イベントの詳細になります。
+是非ご検討のほどよろしくお願いいたします。
+
+大変お忙しいところ恐縮ですが、8月4日(日)までに出演可否をご連絡いただけましたら幸いです。
+
+どのイベントもとても盛り上げて行きたいと考えておりますので
+何卒よろしくお願いいたします。
+_____________________
+
+2024年10月1日(火)
+会場: Zepp Shinjuku
+前売¥4,000 / 当日¥4,500
+
+【出演決定バンド】
+- contoso
+- azure
+- bicep
+- gcp
+
+【出演条件】
+・ノルマ3枚 
+・5枚目〜50%バック
+・機材費別
+_____________________
+
+==============
+Contoso Corporation
+ジョン ドウ(John Doe)
+〒150-0000
+東京都渋谷区ファンタジータウン1-2-3
+ファンタジービル5階
+Tel:080-1111-1234
+E-mail: azure@contoso.com
+==============
+```
+
+## プログラムのビルドと実行
+
+プロジェクトディレクトリに移動します。
+
+プログラムをビルドします。
+
+```sh
+go build -o generate_emails main.go
+```
+
+プログラムの実行
+```sh
+./generate_emails
+```
